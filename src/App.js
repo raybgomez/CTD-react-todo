@@ -17,7 +17,7 @@ const todoList = [
 
 function App() {
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'left' }}>
       <h1>Anime to watch List</h1>
       <ul>
         {todoList.map(function (item) {
