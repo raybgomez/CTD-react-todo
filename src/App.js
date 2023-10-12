@@ -3,7 +3,7 @@ import React from 'react';
 import TodoList from "./TodoList.js";
 import AddTodoForm from "./AddTodoForm.js";
 
-function App() {
+const App = () => {
   return (
     <div style={{ textAlign: 'left' }}>
       <h1>Anime to watch List</h1>
