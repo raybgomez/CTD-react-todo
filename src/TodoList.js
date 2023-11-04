@@ -16,12 +16,11 @@ const todoList = [
     },
 ];
 
-const TodoList = () => {
+const TodoList = (props) => {
     return (<ul>
-        {todoList.map(todo =>
-            <TodoListItem
-                key={todo.id} todoTitle={todo.title} />
-        )}
+        {
+            <TodoListItem>{props.todoList}</TodoListItem>
+        }
     </ul>)
 
 }
