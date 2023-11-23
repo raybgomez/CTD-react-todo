@@ -10,6 +10,7 @@ const App = () => {
   }
 
   const [todoList, setTodoList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getAsyncTodos = () => {
     return new Promise((resolve, reject) => {
@@ -25,13 +26,18 @@ const App = () => {
   };
 
   useEffect(() => {
-    getAsyncTodos().then((result) => { setTodoList(result.data.todoList) });
+    getAsyncTodos().then((result) => {
+      setTodoList(result.data.todoList);
+      setIsLoading(false);
+    });
   }, [])
 
   useEffect(() => {
     const stringifyTodoList = JSON.stringify(todoList);
-    localStorage.setItem('savedTodoList', stringifyTodoList);
-  }, [todoList]);
+    if (!isLoading) {
+      localStorage.setItem('savedTodoList', stringifyTodoList)
+    }
+  }, [todoList, isLoading]);
 
   const removeTodo = (id) => {
     const newTodos = todoList.filter(
