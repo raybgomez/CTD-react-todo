@@ -15,7 +15,7 @@ const App = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList'));
-        // added savedTodoList to setTimeout above and todoList: below. Can't remember where I had this before.
+        // added savedTodoList to setTimeout above and todoList: below. The hw does not say to do this but it worked this way.Why?
 
         const result = {
           data: {
