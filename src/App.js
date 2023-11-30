@@ -8,16 +8,18 @@ const App = () => {
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
   }
-
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const getAsyncTodos = () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
+        const savedTodoList = JSON.parse(localStorage.getItem('savedTodoList'));
+        // added savedTodoList to setTimeout above and todoList: below. Can't remember where I had this before.
+
         const result = {
           data: {
-            todoList: []
+            todoList: savedTodoList || []
           }
         };
         resolve(result)
@@ -38,7 +40,6 @@ const App = () => {
       localStorage.setItem('savedTodoList', stringifyTodoList)
     }
   }, [todoList, isLoading]);
-
   const removeTodo = (id) => {
     const newTodos = todoList.filter(
       todo => id !== todo.id
@@ -50,9 +51,12 @@ const App = () => {
     <>
       <h1>Anime to watch List</h1>
       <AddTodoForm onAddTodo={addTodo} />
-      <TodoList
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (<TodoList
         todoList={todoList}
         onRemoveTodo={removeTodo} />
+      )}
     </>
   );
 };
