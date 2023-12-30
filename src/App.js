@@ -27,14 +27,12 @@ const App = () => {
         throw new Error(`Error: ${response.status} `);
       };
       const data = await response.json();
-      console.log(data);
 
       const todos = data.records.map((todo) => ({
         title: todo.fields.title,
         id: todo.id,
       }));
 
-      console.log(todos);
       setTodoList(todos);
       setIsLoading(false);
 
@@ -100,8 +98,6 @@ const App = () => {
 
     } catch (error) {
       console.error(error)
-
-      setTodoList([...todoList]);
 
     };
   };
