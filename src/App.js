@@ -78,8 +78,7 @@ const App = () => {
 
 
   const deleteData = async (id) => {
-    const url = `https://api.airtable.com/v0/{REACT_APP_AIRTABLE_BASE_ID}/{REACT_APP_TABLE_NAME}/{id}`
-    // The error may be cause by the {id} in the url. I'm not sure what the id should be?
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}/${id}`
     const newTodos = todoList.filter((todo) => todo.id !== id);
     setTodoList(newTodos);
 
