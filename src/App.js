@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import TodoList from "./TodoList.js";
 import AddTodoForm from "./AddTodoForm.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styles from './TodoListItem.module.css'
 
 
 const App = () => {
@@ -119,15 +120,16 @@ const App = () => {
   const removeTodo = (id) => {
     deleteData(id)
   }
-
   return (
-    <>
+    (<div className={styles.titleInputListContainer}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={
             <>
-              <h1>Anime to watch List</h1>
-              <AddTodoForm onAddTodo={addTodo} />
+              <div className={styles.titleInputContainer}>
+                <h1 className={styles.title}>Anime to watch List</h1>
+                <AddTodoForm onAddTodo={addTodo} />
+              </div>
               {isLoading ? (
                 <p>Loading...</p>
               ) : (
@@ -144,7 +146,7 @@ const App = () => {
           } />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>)
   );
 };
 
