@@ -14,8 +14,16 @@ body {
     padding-right: 40px;
 }
 
-.titleInputListContainer .title {
-    background-color: white;
+.titleInputListContainer {
+    max-width: 1024px;
+    margin: 0 auto;
+    background-color: #1b1a1a;
+    /* Above code sets items in the middle */
+}
+
+.title {
+    color: white;
+
 }
 
 .form {
@@ -75,7 +83,7 @@ body {
 
 .ListItem {
     display: grid;
-    grid-template-columns: 90px 1300px 300px;
+    grid-template-columns: 1fr 6fr 3fr;
     height: 32px;
     line-height: 32px;
     margin-bottom: 10px;
@@ -85,21 +93,27 @@ body {
     padding: 20px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width:1024px) {
     .titleInputListContainer .titleInputContainer {
         flex-direction: column;
     }
 
     .inputItem {
         flex-direction: column;
-        width: 200px;
+
     }
 
+}
+
+@media (max-width: 769px) {
+
+    .inputItem {
+        width: 200px;
+    }
 
     .ListItem {
         grid-template-columns: 50px 200px 30px;
         margin-left: -20px;
         font-size: 65%;
     }
-
 }

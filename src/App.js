@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import TodoList from "./TodoList.js";
 import AddTodoForm from "./AddTodoForm.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import styles from './TodoListItem.module.css'
+import styles from './App.module.css'
 
 
 const App = () => {
@@ -127,7 +127,7 @@ const App = () => {
           <Route path="/" element={
             <>
               <div className={styles.titleInputContainer}>
-                <h1 className={styles.title}>Anime to watch List</h1>
+                <h1 className={styles.title}>Shopping List</h1>
                 <AddTodoForm onAddTodo={addTodo} />
               </div>
               {isLoading ? (
