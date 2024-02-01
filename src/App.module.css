@@ -7,6 +7,7 @@ body {
 
 .titleInputContainer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     background-color: #1b1a1a;
@@ -51,7 +52,7 @@ body {
 
 .removeBtn {
     width: 150px;
-    height: 50px;
+    height: auto;
     font-size: 70%;
     background-color: #1b1a1a;
     color: white;
@@ -76,33 +77,22 @@ body {
 
 .addBtn:hover {
     transform: translateY(-3px);
-    background-color: rgba(255, 217, 0, 0.925);
+    background-color: rgba(232, 218, 140, 0.925);
     transition: all .4s;
 }
 
 
 .ListItem {
     display: grid;
-    grid-template-columns: 1fr 6fr 3fr;
+    grid-template-columns: 1fr 6fr 2fr;
+    align-items: center;
+    justify-content: center;
     height: 32px;
-    line-height: 32px;
     margin-bottom: 10px;
+    margin-right: 40px;
     border-radius: 3px;
     background-color: #fff;
-    padding-left: 50px;
     padding: 20px;
-}
-
-@media screen and (max-width:1024px) {
-    .titleInputListContainer .titleInputContainer {
-        flex-direction: column;
-    }
-
-    .inputItem {
-        flex-direction: column;
-
-    }
-
 }
 
 @media (max-width: 769px) {
@@ -112,8 +102,10 @@ body {
     }
 
     .ListItem {
-        grid-template-columns: 50px 200px 30px;
-        margin-left: -20px;
         font-size: 65%;
+    }
+
+    .removeBtn {
+        width: 100px;
     }
 }
