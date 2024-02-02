@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react"
+import styles from './App.module.css'
+
 
 const InputWithLabel = ({
     value,
@@ -11,9 +13,10 @@ const InputWithLabel = ({
         inputRef.current.focus()
     })
     return (
-        <>
+        (<>
             <label htmlFor="todoTitle">{children}</label>
             <input
+                className={styles.inputItem}
                 id="todoTitle"
                 name="title"
                 type="text"
@@ -21,7 +24,7 @@ const InputWithLabel = ({
                 onChange={onChange}
                 ref={inputRef}
             />
-        </>
+        </>)
     )
 }
 

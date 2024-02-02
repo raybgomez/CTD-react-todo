@@ -1,9 +1,11 @@
+import styles from './App.module.css'
+
 const TodoListItem = ({ todo, onRemoveTodo }) => {
 
     return (
-        <li>{todo.title}
-            <button type="button" onClick={() => onRemoveTodo(todo.id)}>Remove</button>
-        </li>
+        (<li className={styles.ListItem}><input className={styles.liCheckbox} type="checkbox"></input>{todo.title}
+            <button className={styles.removeBtn} type="button" onClick={() => onRemoveTodo(todo.id)}>Remove</button>
+        </li>)
     );
 }
 
