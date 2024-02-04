@@ -1,4 +1,4 @@
-import styles from './App.module.css';
+import styles from '../App.module.css';
 import propTypes from 'prop-types';
 
 const TodoListItem = ({ todo, onRemoveTodo }) => {
