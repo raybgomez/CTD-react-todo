@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react"
-import styles from './App.module.css'
+import { useEffect, useRef } from "react";
+import styles from '../App.module.css';
+import PropTypes from "prop-types"
 
 
 const InputWithLabel = ({
@@ -26,6 +27,13 @@ const InputWithLabel = ({
             />
         </>)
     )
+}
+
+InputWithLabel.propTypes = {
+    value: PropTypes.func.isRequired,
+    onchange: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired,
+
 }
 
 export default InputWithLabel

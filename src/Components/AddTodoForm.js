@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import InputWithLabel from './InputWithLabel.js';
-import styles from './App.module.css'
+import styles from '../App.module.css';
+import PropTypes from "prop-types";
 
 
 const AddTodoForm = ({ onAddTodo }) => {
@@ -30,9 +31,11 @@ const AddTodoForm = ({ onAddTodo }) => {
             </InputWithLabel>
             <button className={styles.addBtn}>Add</button>
         </form>)
-
     );
+};
 
+AddTodoForm.propTypes = {
+    onAddTodo: PropTypes.func.isRequired,
 }
 
 export default AddTodoForm

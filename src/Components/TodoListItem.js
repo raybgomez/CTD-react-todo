@@ -1,4 +1,5 @@
-import styles from './App.module.css'
+import styles from '../App.module.css';
+import propTypes from 'prop-types';
 
 const TodoListItem = ({ todo, onRemoveTodo }) => {
 
@@ -7,6 +8,11 @@ const TodoListItem = ({ todo, onRemoveTodo }) => {
             <button className={styles.removeBtn} type="button" onClick={() => onRemoveTodo(todo.id)}>Remove</button>
         </li>)
     );
+}
+
+TodoListItem.propTypes = {
+    todo: propTypes.func.isRequired,
+    onRemoveTodo: propTypes.func.isRequired,
 }
 
 export default TodoListItem
