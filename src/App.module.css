@@ -19,12 +19,24 @@ body {
     max-width: 1024px;
     margin: 0 auto;
     background-color: #1b1a1a;
-    /* Above code sets items in the middle */
 }
 
 .title {
     color: white;
 
+}
+
+.sortBtnsContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 30px;
+}
+
+.titleSortBtn,
+.createdSortBtn {
+    border-radius: 30px;
 }
 
 .form {
