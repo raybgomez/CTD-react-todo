@@ -19,7 +19,6 @@ body {
     max-width: 1024px;
     margin: 0 auto;
     background-color: #1b1a1a;
-    /* Above code sets items in the middle */
 }
 
 .title {
@@ -27,8 +26,22 @@ body {
 
 }
 
+.sortBtnsContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 30px;
+}
+
+.titleSortBtn,
+.createdSortBtn {
+    border-radius: 30px;
+}
+
 .form {
     display: flex;
+    align-items: center;
     color: rgb(255, 255, 255);
     gap: 30px;
     height: 40px;
@@ -107,5 +120,17 @@ body {
 
     .removeBtn {
         width: 100px;
+    }
+}
+
+@media (max-width: 503px) {
+    .form {
+        height: 30px;
+        width: 200px;
+        padding-right: 150px;
+    }
+
+    .ListItem {
+        font-size: 50%;
     }
 }

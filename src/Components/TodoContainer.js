@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import TodoList from "./TodoList.js";
 import AddTodoForm from "./AddTodoForm.js";
 import styles from '../App.module.css';
-import propTypes from 'prop-types';
 
 const TodoContainer = () => {
     const addTodo = (newTodo) => {
@@ -10,16 +9,28 @@ const TodoContainer = () => {
     }
     const [todoList, setTodoList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [sortOrder, setSortOrder] = useState('asc');
+    const [sortBy, setSortBy] = useState('title');
 
-    const fetchData = async () => {
-        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+    const toggleSortOrder = (field) => {
+        if (sortBy === field) {
+            const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+            setSortOrder(newSortOrder);
+        } else {
+            setSortBy(field);
+            setSortOrder('asc');
+        }
+        fetchData(sortBy, sortOrder);
+    };
+
+    const fetchData = async (sortField = 'title', order = 'asc') => {
+        const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}?sort[0][field]=${sortField}&sort[0][direction]=${order}&view=Grid%20view`;
         const options = {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`
             }
         };
-
 
         try {
             const response = await fetch(url, options);
@@ -28,6 +39,13 @@ const TodoContainer = () => {
                 throw new Error(`Error: ${response.status} `);
             };
             const data = await response.json();
+            console.log(data);
+
+            // data.records.sort((objectA, objectB) => {
+            //     if (objectA.fields.title < objectB.fields.title) return 1;
+            //     if (objectA.fields.title > objectB.fields.title) return -1;
+            //     return 0;
+            // });
 
             const todos = data.records.map((todo) => ({
                 title: todo.fields.title,
@@ -39,17 +57,22 @@ const TodoContainer = () => {
 
         } catch (error) {
             console.error(error)
-
-
         };
     };
 
+    useEffect(() => {
+        fetchData(sortBy, sortOrder);
+    }, [sortOrder, sortBy]);
+
     const postData = async (newTodo) => {
+        const updatedTodoList = [...todoList, newTodo];
+        setTodoList(updatedTodoList);
+
+
         const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
         const todoData = {
             fields: newTodo
         }
-        console.log(todoData)
         const options = {
             method: 'POST',
             headers: {
@@ -64,10 +87,10 @@ const TodoContainer = () => {
             const response = await fetch(url, options);
 
             if (!response.ok) {
-                throw new Error(`Error: ${response.status} `);
+                throw new Error(`Error: ${response.status} - ${await response.text()} `);
             };
             await response.json();
-            fetchData()
+            fetchData(sortBy, sortOrder)
 
         } catch (error) {
             console.error(error)
@@ -105,7 +128,6 @@ const TodoContainer = () => {
 
     useEffect(() => {
         fetchData()
-
     }, []);
 
 
@@ -120,9 +142,17 @@ const TodoContainer = () => {
         deleteData(id)
     }
     return (
-        <>
+        (<>
             <div className={styles.titleInputContainer}>
-                <h1 className={styles.title}>Shopping List</h1>
+                <h1 className={styles.title}>Get it Done List</h1>
+                <div className={styles.sortBtnsContainer}>
+                    <button className={styles.titleSortBtn} onClick={() => toggleSortOrder('title')}>
+                        Sort by Title: {sortBy === 'title' ? sortOrder === 'asc' ? 'Ascending' : 'Descending' : 'None'}
+                    </button>
+                    <button className={styles.createdSortBtn} onClick={() => toggleSortOrder('createdTime')}>
+                        Sort by Created Time: {sortBy === 'createdTime' ? sortOrder === 'asc' ? 'Ascending' : 'Descending' : 'None'}
+                    </button>
+                </div>
                 <AddTodoForm onAddTodo={addTodo} />
             </div>
             {isLoading ? (
@@ -132,13 +162,8 @@ const TodoContainer = () => {
                     todoList={todoList}
                     onRemoveTodo={removeTodo} />
             )}
-        </>
+        </>)
     );
 };
-
-TodoContainer.propTypes = {
-    newTodo: propTypes.func.isRequired,
-    id: propTypes.func.isRequired,
-}
 
 export default TodoContainer;
