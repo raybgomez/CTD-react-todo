@@ -15,7 +15,7 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
 }
 
 TodoList.propTypes = {
-    todoList: propTypes.func.isRequired,
+    todoList: propTypes.array.isRequired,
     onRemoveTodo: propTypes.func.isRequired,
 }
 

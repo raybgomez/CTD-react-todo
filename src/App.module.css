@@ -41,6 +41,7 @@ body {
 
 .form {
     display: flex;
+    align-items: center;
     color: rgb(255, 255, 255);
     gap: 30px;
     height: 40px;
@@ -119,5 +120,17 @@ body {
 
     .removeBtn {
         width: 100px;
+    }
+}
+
+@media (max-width: 503px) {
+    .form {
+        height: 30px;
+        width: 200px;
+        padding-right: 150px;
+    }
+
+    .ListItem {
+        font-size: 50%;
     }
 }

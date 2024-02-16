@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import TodoList from "./TodoList.js";
 import AddTodoForm from "./AddTodoForm.js";
 import styles from '../App.module.css';
-import propTypes from 'prop-types';
 
 const TodoContainer = () => {
     const addTodo = (newTodo) => {
@@ -145,7 +144,7 @@ const TodoContainer = () => {
     return (
         (<>
             <div className={styles.titleInputContainer}>
-                <h1 className={styles.title}>Shopping List</h1>
+                <h1 className={styles.title}>Get it Done List</h1>
                 <div className={styles.sortBtnsContainer}>
                     <button className={styles.titleSortBtn} onClick={() => toggleSortOrder('title')}>
                         Sort by Title: {sortBy === 'title' ? sortOrder === 'asc' ? 'Ascending' : 'Descending' : 'None'}
@@ -166,10 +165,5 @@ const TodoContainer = () => {
         </>)
     );
 };
-
-TodoContainer.propTypes = {
-    newTodo: propTypes.func.isRequired,
-    id: propTypes.func.isRequired,
-}
 
 export default TodoContainer;

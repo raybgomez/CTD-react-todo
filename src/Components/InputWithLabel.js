@@ -30,9 +30,9 @@ const InputWithLabel = ({
 }
 
 InputWithLabel.propTypes = {
-    value: PropTypes.func.isRequired,
-    onchange: PropTypes.func.isRequired,
-    children: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    children: PropTypes.object.isRequired,
 
 }
 
