@@ -20,7 +20,7 @@ const TodoContainer = () => {
             setSortBy(field);
             setSortOrder('asc');
         }
-        fetchData(sortBy, sortOrder);
+        // fetchData(sortBy, sortOrder);
     };
 
     const fetchData = async (sortField = 'title', order = 'asc') => {
