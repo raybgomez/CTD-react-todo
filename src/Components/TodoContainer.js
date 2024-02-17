@@ -39,7 +39,6 @@ const TodoContainer = () => {
                 throw new Error(`Error: ${response.status} `);
             };
             const data = await response.json();
-            console.log(data);
 
             // data.records.sort((objectA, objectB) => {
             //     if (objectA.fields.title < objectB.fields.title) return 1;
@@ -64,10 +63,12 @@ const TodoContainer = () => {
         fetchData(sortBy, sortOrder);
     }, [sortOrder, sortBy]);
 
-    const postData = async (newTodo) => {
-        const updatedTodoList = [...todoList, newTodo];
-        setTodoList(updatedTodoList);
+    // console.log("TodoList updated:", todoList);
+    // }, [todoList]);
 
+    const postData = async (newTodo) => {
+        // const updatedTodoList = [...todoList, newTodo];
+        // setTodoList(updatedTodoList);
 
         const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
         const todoData = {

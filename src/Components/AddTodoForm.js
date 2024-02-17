@@ -29,7 +29,7 @@ const AddTodoForm = ({ onAddTodo }) => {
             >
                 <strong></strong>
             </InputWithLabel>
-            <button className={styles.addBtn}>Add</button>
+            <button className={styles.addBtn} >Add</button>
         </form>)
     );
 };
