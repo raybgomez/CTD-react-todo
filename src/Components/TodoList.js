@@ -13,7 +13,6 @@ const TodoList = ({ todoList, onRemoveTodo }) => {
             )}
     </ul>)
 
-
 }
 
 TodoList.propTypes = {
